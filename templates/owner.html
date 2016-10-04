@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+                <div class="row">
+                <div class="col-md-3">
+                    <!-- *** CUSTOMER MENU ***
+ _________________________________________________________ -->
+                    <div class="panel panel-default sidebar-menu">
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Customer section</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <ul class="nav nav-pills nav-stacked">
+                                <li {% if is_about_us %}class="active"{% endif %}>
+                                    <a href="{{uri_for('about_us')}}"><i class="fa fa-list"></i>About Us</a>
+                                </li>
+                                <li {% if is_contact_us %}class="active"{% endif %}>
+                                    <a href="{{uri_for('contact_us')}}"><i class="fa fa-heart"></i>Contact Us</a>
+                                </li>
+                                <li {% if is_faq %}class="active"{% endif %}>
+                                    <a href="{{uri_for('faq')}}"><i class="fa fa-user"></i>FAQ</a>
+                                </li>
+                                <li {% if is_owner %}class="active"{% endif %}>
+                                    <a href="{{uri_for('owner')}}"><i class="fa fa-user"></i>Property Owner</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                   </div>
+                    <!-- /.col-md-3 -->
+
+                    <!-- *** CUSTOMER MENU END *** -->
+                </div>
+
+                <div class="col-md-9">
+                    <div class="box">
+                      <h3>Important Points For Property Owners</h3>
+                      <p class="lead">
+                          Caretaker will manage to get tenants. The caretaker will get the verification done for all 
+                          tenants. The caretaker will have to keep all the documents related to tenant/tenants with him 
+                          and the owner can check the same at any suitable time. The owner can provide reasonable 
+                          logic for not taking a tenant or terminating a tenant. Caretaker can sign on behalf of the 
+                          owner on rent-agreement with tenant. The caretaker will collect rent from all the tenants. A 
+                          separate financial understanding will be had with Caretaker
+                      </p>
+                               
+                      <p class="lead">
+                          The caretaker will deposit all bills of electricity, power backup , RWA maintenance etc
+                          except the house tax, which will be paid by the owner.
+                      </p>
+                      <p class="lead">
+                          Caretaker does not become owner of the property in any way and similarly the caretaker
+                          does not have any of the owners liabilities
+                      </p>
+
+                      <p class="lead">
+                          That the owner can visit the said premise at a reasonable time after discussion.
+                      </p>
+                           
+					</div>
+				</div> 
+			</div>     
+                        
+                        {% endblock %}

@@ -1,0 +1,77 @@
+application: tagfry3
+version: one
+runtime: python27
+api_version: 1
+threadsafe: true
+
+skip_files:
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?test$
+- ^(.*/)?test$
+- ^Makefile
+- ^COPYING.LESSER
+- ^README.md
+- \.gitignore
+- ^\.git/.*
+- \.*\.lint$
+- ^data/subscriptions.xml
+- ^design/.*
+
+handlers:
+- url: /css
+  mime_type: text/css
+  static_dir: static/assets/css
+
+- url: /js
+  mime_type: text/javascript
+  static_dir: static/assets/js
+  
+- url: /forms
+  mime_type: text/javascript
+  static_dir: static/forms  
+
+- url: /img/(.*\.(gif|png|jpg))
+  static_files: static/assets/img/\1
+  upload: static/assets/img/(.*\.(gif|png|jpg))
+
+- url: /ico/(.*\.(gif|png|jpg))
+  static_files: static/assets/ico/\1
+  upload: static/assets/ico/(.*\.(gif|png|jpg))
+
+- url: /favicon\.ico
+  mime_type: image/vnd.microsoft.icon
+  static_files: static/assets/ico/favicon.ico
+  upload: static/assets/ico/favicon.ico
+
+- url: /fonts/(.+\.(svg|eot|otf|ttf|woff))
+  static_files: static/assets/fonts/\1
+  upload: static/assets/fonts/(.+\.(svg|eot|otf|ttf|woff))
+
+- url: /(robots\.txt|humans\.txt|crossdomain\.xml)
+  static_files: static/\1
+  upload: static/(robots\.txt|humans\.txt|crossdomain\.xml)
+  
+- url: /taskqueue/.*
+  script: onlinepg.app
+  login: admin
+  
+- url: /admin/.*
+  script: onlinepg.app
+  login: admin  
+
+- url: .*
+  script: onlinepg.app
+
+inbound_services:
+- warmup
+
+libraries:
+- name: jinja2
+  version: "2.6"
+  
+- name: webapp2
+  version: "latest"  

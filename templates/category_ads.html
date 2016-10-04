@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="panel-group" id="accordion">
+<div class="row">
+  <div class="col-xs-12">
+    {% for ad in ads %}
+    <ul class="list-unstyled">
+      <li class="list-group-item"><a href="{{ uri_for('ad_detail', category=ad.category.get().category_name, ad_id=ad.key.id(), _full=True) }}">{{ad.ad_title}}{% if ad.ad_price_from %}/{{ad.ad_price_from}}{% if ad.ad_price_to %}-{{ad.ad_price_to}}{% endif %}{% endif %}{% if ad.offered_price %}/Offering-{{ad.offered_price}}{% endif %}</a></li>
+    </ul>
+    {% endfor %}  
+  </div>
+</div>
+</div> 
+{% endblock %}

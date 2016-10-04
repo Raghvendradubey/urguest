@@ -1,0 +1,161 @@
+{% extends 'base.html' %} 
+    
+    {% block content %}
+    
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12 single-post">
+                <ul id="myTab" class="nav nav-tabs nav-justified">
+                  <li class="active"><a href="#detail" data-toggle="tab">Details</a></li>
+                  <li><a href="#location" data-toggle="tab">Contact the owner</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade in active" id="detail">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>pg title</h2>
+                        <table class="table table-bordered">
+                          <tr>
+                            <td><strong>Price</strong></td>
+                            <td>{{pg.pg_price}}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Collect from owner</strong></td>
+                            <td>Yes</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Delivered</strong></td>
+                            <td>No</td>
+                          </tr>
+                        </table>
+
+                        <h3>Description</h3>
+                        <p>{{pg.pg_detail}}</p>
+                        <div class="widget-white favorite">
+                          <a href="#"><i class="fa fa-heart"></i> Add to favorite</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+                <h3>Photos</h3>
+                <div style="height: 305px">
+	              <carousel interval="5000">
+			        {% for img in pg.pg_images %}
+				    <slide>
+				      <img src="{{img}}"/>						       
+				    </slide>
+				   {% endfor %}
+				  </carousel>
+				</div>
+
+                       
+      <div class="container">             
+                   {% if pg.pg_request or pg.pg_member %}
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>Reuest For Pg</h2>
+                        <table class="table table-bordered" ng-controller="RequestUserCtrl" ng-init="pgIdInit='{{pg.key.id()}}'">
+                          {% for request_user in pg.pg_member %}
+                          <tr>
+                            <td><strong>{{request_user.get().user_email}}</strong></td>
+                            
+                              <td>
+                              Add
+                              <input type="checkbox"
+                                     ng-click="saveUser('{{request_user.urlsafe()}}');"
+                                     checked="true"/>
+                              </td>
+                              <td>
+                              Remove
+                              <input type="checkbox"
+                                     ng-click="removeUser('{{request_user.urlsafe()}}');" />
+                              </td>
+                                     
+                            
+                          </tr>
+                          {% endfor %}
+                          {% for request_user in pg.pg_request %}
+                          <tr>
+                            <td><strong>{{request_user.get().user_email}}</strong></td>
+                            
+                              <td>
+                              Add
+                              <input id="is-add-checkbox" 
+                                     type="checkbox"
+                                     ng-click="saveUser('{{request_user.urlsafe()}}');" />
+                              </td>
+                              <td>
+                              Remove
+                              <input id="is-remove-checkbox"
+                                     type="checkbox"
+                                     ng-click="removeUser('{{request_user.urlsafe()}}');" />
+                              </td>
+                                     
+                            
+                          </tr>
+                          {% endfor %}
+                        </table>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                  <!-- break -->
+                  <div class="tab-pane fade" id="location">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <div class="user-container user-dark">
+                          <div class="user-description">
+                            <h3>Username</h3>
+                            <p>Other pgs from this user</p>
+                            <p><i class="fa fa-phone"></i> 021-234-XXXX [reveal number]</p>
+                            <p>To email the owner, you can use the email form provided. Your email address will not be visible to the other user.</p>  
+                          </div>
+                        </div>
+
+			            <div class="user-container">
+                          <div class="user-description">
+                            <h3>Map</h3>
+                            <p>optional map can be included here</p>  
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <form action="{{uri_for('pg_detail', pg_id=pg.key.id())}}" method="post">
+                        <div class="form-group">
+			              <div class="controls">
+			                <div class="input-group">
+				              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					          {{ macros.field(form.user_email, placeholder="Enter Your Email", class="form-control") }}
+				            </div>
+			              </div>	
+		                </div>
+                          <div class="form-group">
+                            <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end:article -->          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+    {% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{{ uri_for("add_location") }}" method="post" class="form">
+            <div class="get-in-touch">
+                <h3 class="text-center">
+                    Create Location</h3>
+                <div class="form-group">
+                  <div class="controls">
+			    <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ macros.field(form.location, placeholder="Please Enter New Location", class="form-control") }}
+                </div></div>
+                </div>
+                <div class="col-md-4">
+                <button type="submit" id="mybtn"  class="btn btn-primary" >Submit</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

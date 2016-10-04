@@ -1,0 +1,16 @@
+[contentEditable] {
+  transition: background-color 0.1s ease;
+  cursor: pointer;
+  background-color: #FFD;
+  border-color: grey;
+  border-width: 1px;
+  border-style: dotted;
+}
+
+.confirm[contentEditable] {
+  background-color: #E4FAE4;
+}
+
+.error[contentEditable] {
+  background-color: #FAE8E4;
+}

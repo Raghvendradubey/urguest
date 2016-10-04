@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+                <div class="row">
+                <div class="col-md-3">
+                    <!-- *** CUSTOMER MENU ***
+ _________________________________________________________ -->
+                    <div class="panel panel-default sidebar-menu">
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Customer section</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <ul class="nav nav-pills nav-stacked">
+                                <li {% if is_about_us %}class="active"{% endif %}>
+                                    <a href="{{uri_for('about_us')}}"><i class="fa fa-list"></i>About Us</a>
+                                </li>
+                                <li {% if is_contact_us %}class="active"{% endif %}>
+                                    <a href="{{uri_for('contact_us')}}"><i class="fa fa-heart"></i>Contact Us</a>
+                                </li>
+                                <li {% if is_faq %}class="active"{% endif %}>
+                                    <a href="{{uri_for('faq')}}"><i class="fa fa-user"></i>FAQ</a>
+                                </li>
+                                <li {% if is_owner %}class="active"{% endif %}>
+                                    <a href="{{uri_for('owner')}}"><i class="fa fa-user"></i>Property Owner</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                   </div>
+                    <!-- /.col-md-3 -->
+
+                    <!-- *** CUSTOMER MENU END *** -->
+                </div>
+
+                <div class="col-md-9">
+                    <div class="box">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+					                    <a data-toggle="collapse" data-parent="#accordion" href="#faq1">
+						                    1. Do I have to deposit various bills myself?
+						                </a>
+						            </h4>
+                                </div>
+                                <div id="faq1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>No the tenant does not have to deposit any bills. Everything will be taken care of by the
+                                        company URGuest.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+					                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+						                    2. What happens if the Water purifier goes wrong?
+					                    </a>
+					                </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        URGuest will provide water bottle and in parallel it will arrange to rectify the Water
+                                        purifier.</div>
+                                </div>
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+					                    <a data-toggle="collapse" data-parent="#accordion" href="#faq3">
+						                    3. What happens of any other equipment goes wrong?
+					                    </a>
+					                </h4>
+                                </div>
+                                <div id="faq3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>URGuest will get the equipment rectified.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel -->
+					</div>
+				</div> 
+			</div>                  
+           {% endblock %}

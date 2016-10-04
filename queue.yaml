@@ -1,0 +1,13 @@
+# TaskQueues for ask
+total_storage_limit: 500M
+
+queue:
+# indexing new city
+- name: indexing
+  rate: 10.0/s
+  bucket_size: 10
+  
+# add new city
+- name: add-data
+  rate: 10.0/s
+  bucket_size: 10  

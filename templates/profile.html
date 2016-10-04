@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+                <div class="row">
+                <div class="col-md-3">
+                    <!-- *** CUSTOMER MENU ***
+ _________________________________________________________ -->
+                    <div class="panel panel-default sidebar-menu">
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Customer section</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <ul class="nav nav-pills nav-stacked">
+                                <li {% if is_profile %}class="active"{% endif %}>
+                                    <a href="{{uri_for('profile', user_id=user.user_id)}}"><i class="fa fa-list"></i>Your PGs</a>
+                                </li>
+                                <li {% if is_profile_question %}class="active"{% endif %}>
+                                    <a href="{{uri_for('questions', user_id=user.user_id)}}"><i class="fa fa-heart"></i>Your Questions</a>
+                                </li>
+                                <li {% if is_profile_notification %}class="active"{% endif %}>
+                                    <a href="{{uri_for('notification', user_id=user.user_id)}}"><i class="fa fa-user"></i>Notifications</a>
+                                </li>
+                                <li {% if is_setting %}class="active"{% endif %}>
+                                    <a href="{{ uri_for('change_pwd') }}"><i class="fa fa-sign-out"></i>Settings</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <!-- *** CUSTOMER MENU END *** -->
+                </div>
+
+                <div class="col-md-9">
+                    <div class="box">
+                    {% if is_profile %}
+                        
+                        {% if user.pg == None %}
+                            <p class="lead">Sorry You Don't Have Any Alloted Pg</p>
+                        {% else %}
+                            <span class="badge" style="float:right;">Alloted</span>
+                            <a href="{{uri_for('pg_detail', pg_id=user.pg.id())}}">{{user.pg.get().pg_title}}</a> 
+                        {% endif %}       
+                        
+                        {% if user.requested_pg %}
+                        {% for pg in user.requested_pg %}
+                            
+                            <span class="badge" style="float:right;">Requested</span>
+                            <a href="{{uri_for('pg_detail', pg_id=pg.id())}}">{{pg.get().pg_title}}</a>
+                                
+                        {% endfor %}   
+                        {% endif %}
+                    {% endif %}   
+
+					{% if is_profile_question %}
+						    {% for msg in message %}
+						        <p class="lead">{{msg.member_message[0]}}</p>
+						    {% else %}        
+						        <p class="lead">Sorry You don't have any Question</p>
+						    {% endfor %}    
+					{% endif %}  	
+					{% if is_profile_notification %}
+						
+						    {% for msg in message %}    
+						        <p class="lead">{{msg.owner_message[0]}}</p>						            
+						      
+						    {% else %}       
+						        <p class="lead">Sorry You don't have any Notification</p>
+						    {% endfor %}
+					{% endif %}
+					{% if is_setting %}
+					    <h3>Change password</h3>
+						<form id="loginform" action="{{ uri_for('change_pwd') }}" method="post">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="password_1">New password</label>
+                                        {{ macros.field(form.user_password, placeholder="Enter New Password", type="password", class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="password_2">Confirm password</label>
+                                        {{ macros.field(form.user_password_confirm, placeholder="Confirm Password", type="password", class="form-control") }}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- /.row -->
+                            <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save new password</button>
+                            </div>
+                            </div>
+                        </form>
+						{% endif %}    
+						</div>
+						</div> 
+						</div>     
+                        
+                        {% endblock %}

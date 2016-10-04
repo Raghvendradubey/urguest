@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul class="nav nav-tabs nav-justified">
+    <li role="presentation" {% if is_profile %}class="active"{% endif %}><a href="{{uri_for('profile', user_id=user.user_id)}}">Your PGs</a></li>
+    <li role="presentation" {% if is_profile_question %}class="active"{% endif %}><a href="{{uri_for('questions', user_id=user.user_id)}}">Your Questions</a></li>
+    <li role="presentation" {% if is_profile_notification %}class="active"{% endif %}><a href="{{uri_for('notification', user_id=user.user_id)}}">Notifications</a></li>
+</ul>
+{% if is_profile %}
+<div class="well well-lg">
+    {% if user.pg == None %}
+        Sorry You Don't Have Any Alloted Pg
+    {% else %}
+         <span class="badge" style="float:right;">Alloted</span>
+         <a href="{{uri_for('pg_detail', pg_id=user.pg.id())}}">{{user.pg.get().pg_title}}</a> 
+    {% endif %}       
+</div>
+{% if user.requested_pg %}
+    {% for pg in user.requested_pg %}
+    <div class="well well-lg">    
+        <span class="badge" style="float:right;">Requested</span>
+        <a href="{{uri_for('pg_detail', pg_id=pg.id())}}">{{pg.get().pg_title}}</a>
+    </div>        
+    {% endfor %}   
+{% endif %}
+{% endif %}   
+
+{% if is_profile_question %}
+{% if message.member_message %}
+    {% for msg in message.member_message %}
+    <div class="well well-lg">    
+        {{msg}}
+    </div>        
+    {% endfor %}  
+{% else %}
+     <div class="well well-lg">    
+        Sorry You don't have any Question
+    </div> 
+{% endif %} 
+{% endif %}  
+
+{% if is_profile_notification %}
+{% if message.owner_message %}
+    {% for msg in message.ownerr_message %}
+    <div class="well well-lg">    
+        {{msg}}
+    </div>        
+    {% endfor %}  
+{% else %}
+     <div class="well well-lg">    
+        Sorry You don't have any Notification
+    </div> 
+{% endif %} 
+{% endif %}      
+    
+{% endblock %}

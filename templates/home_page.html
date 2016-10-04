@@ -1,0 +1,71 @@
+                            {% extends 'base.html' %} 
+                            {% block content %}
+                            <div class="row products">
+                                {% for pg in pgs %}
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="product">
+                                        <a href="{{uri_for('pg_detail', pg_id=pg.key.urlsafe())}}">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                        <img src="{{pg.pgImage()[0]}}=s500-c" alt="" class="img-responsive">
+                                                </div>
+                                                <div class="back">
+                                                    
+                                                        <img src="{{pg.pgImage()[1]}}=s500-c" alt="" class="img-responsive">
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        <a href="{{uri_for('pg_detail', pg_id=pg.key.urlsafe())}}" class="invisible">
+                                            <img src="{{pg.pgImage()[0]}}=s450-c" alt="" class="img-responsive">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="{{uri_for('pg_detail', pg_id=pg.key.id())}}">{{pg.pg_title}}</a></h3>
+                                            <!--<p class="buttons">
+                                                <a href="{{uri_for('pg_detail', pg_id=pg.key.id())}}" class="btn btn-default">View detail</a>
+                                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </p>-->
+                                        </div>
+                                        <!-- /.text -->
+                                        <div class="ribbon new">
+                                            <div class="theribbon"><span>₹</span><span>{{pg.pg_price}}</span></div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                        <div class="ribbon sale">
+                                            {% if pg.is_full %}
+                                            <div class="theribbon">Full</div>
+                                            {% else %}
+                                            <div class="theribbon">Vacant</div>
+                                            {% endif %}
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.product -->
+                                </div>
+                                {% endfor %}
+                            </div>    
+                            {% endblock %}
+                            {% block cursor %}
+                            <div class="pages">
+
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a>
+                                    </li>
+                                    <li class="active"><a href="#">1</a>
+                                    </li>
+                                    <li><a href="#">2</a>
+                                    </li>
+                                    <li><a href="#">3</a>
+                                    </li>
+                                    <li><a href="#">4</a>
+                                    </li>
+                                    <li><a href="#">5</a>
+                                    </li>
+                                    <li><a href="#">&raquo;</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endblock %}
+

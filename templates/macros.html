@@ -1,0 +1,27 @@
+<!-- Renders a form field with errors, required flags, and common styling.
+  html element fields such as class, style, or type can be passed as kwargs.
+  Usage: macros.field(form.username, class="input-xlarge", type="email") -->
+{% macro field(field, label='') -%}
+  
+    {% set text = label or field.label.text %}
+     
+      {{ field(**kwargs) }}
+
+      {% if field.errors %}
+        {% for error in field.errors %}<label for="{{ field.id }}"
+          class="error help-inline">{{ error }}</label>{% endfor %}
+      {% endif %}
+    
+  
+{%- endmacro %}
+
+{% macro checkbox_field(field, label='') -%}
+  <div class="checkbox">
+  {% set text = label or field.label.text %}
+  <label>{{ field(**kwargs) }}{{ field.label(text=text + " ") }}</label>
+  </div>
+{%- endmacro %}
+
+{% macro hidden_field(field) -%}
+  {{ field(**kwargs) }}
+{%- endmacro %}

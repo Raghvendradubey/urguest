@@ -1,0 +1,252 @@
+{% import "macros.html" as macros %}
+<!DOCTYPE html>
+<html lang="en" ng-app="pgApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Raghvendra">
+    <meta name="keywords" content="">
+
+    <title>
+      {% block page_title %}
+        {% include "page_titles.html" %}
+      {% endblock %}
+    </title>
+    {% block canonicals %}
+      {% include "canonicals.html" %}
+    {% endblock %}
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/owl.theme.css" rel="stylesheet">
+
+    <!-- theme stylesheet -->
+    <link href="/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+
+    <!-- your stylesheet with modifications -->
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/angular-app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/fileupload/jquery.fileupload.css">
+
+    <!--<script src="/js/respond.min.js"></script>-->
+
+    <link rel="shortcut icon" href="favicon.png">
+
+
+
+</head>
+<body>
+
+    <!-- *** TOPBAR ***  -->
+
+    {% include "top_navigation_menu.html" %}
+
+    <!-- End Top Bar -->  
+    <div id="all">
+
+        <div id="content">
+            <div class="container">
+
+                <div class="col-md-12">
+
+                    {% block breadcrumbs %}
+                    <ul class="breadcrumb">
+                    <li><a href="{{uri_for('home')}}" itemprop="url">Home</a></li>
+                    {% include "breadcrumbs.html" %}
+                    </ul>    
+                    {% endblock %}
+      
+                    {% block content %}{% endblock %}
+                    {% block cursor %}{% endblock %}
+                </div>
+                <!-- /.col-md-12 -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+
+
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+        <div id="footer" data-animate="fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Pages</h4>
+
+                        <ul>
+                            <li><a href="{{uri_for('about_us')}}">About us</a>
+                            </li>
+                            <li><a href="{{uri_for('faq')}}">FAQ</a>
+                            </li>
+                            <li><a href="{{uri_for('contact_us')}}">Contact us</a>
+                            </li>
+                        </ul>
+
+                        <hr>
+
+                        <h4>User section</h4>
+
+                        <ul>
+                            <li><a href="{{uri_for('login')}}">Login</a>
+                            </li>
+                            <li><a href="{{uri_for('sign_up')}}">Register</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg hidden-sm">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Top Next Cities To Approach</h4>
+
+                        <ul>
+                            <li>Delhi
+                            </li>
+                            <li>Noida
+                            </li>
+                            <li>Gurgaon
+                            </li>
+                        </ul>
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Where to find us</h4>
+
+                        <p><strong>URGuest</strong>
+                            <br>Sun Tower, Shipra Sun City
+                            <br>Indirapuram(201014)
+                            <br>Ghaziabad, U.P
+                            <br>
+                            <strong>India</strong>
+                        </p>
+
+                        <a href="{{uri_for('contact_us')}}">Go to contact page</a>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>What We Provide</h4>
+                         <ul>
+                            <li>WiFi–20 Mbps, Unlimited</li>
+
+                            <li>Air condition -LG, Samsung split, Hitachi</li>
+
+                            <li>Washing Machine-LG-Fully Automatic</li>
+                            <li>50 or 43 inch LED Samsung/LG etc wall mounted TV</li>
+                            
+                        </ul>
+                        <a href="{{uri_for('about_us')}}">Know More</a>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© 2015 URGuest</p>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+    </div>
+    <!-- /#all -->
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- scripts -->
+    
+    <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>-->
+
+    {% if not is_home %}
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular-route.min.js">
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+
+    {% if is_pg_edit or is_pg_detail or is_pg_post %}
+    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+    <script src="/js/libs/fileupload/jquery.ui.widget.js"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="/js/libs/fileupload/load-image.all.min.js"></script>
+    
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script src="/js/libs/fileupload/jquery.iframe-transport.js"></script>
+    <!-- The basic File Upload plugin -->
+    <script src="/js/libs/fileupload/jquery.fileupload.js"></script>
+    <!-- The File Upload processing plugin -->
+    <script src="/js/libs/fileupload/jquery.fileupload-process.js"></script>
+    <!-- The File Upload image preview & resize plugin -->
+    <script src="/js/libs/fileupload/jquery.fileupload-image.js"></script>
+    
+    <!-- The File Upload validation plugin -->
+    <script src="/js/libs/fileupload/jquery.fileupload-validate.js"></script>
+    <!-- The File Upload Angular JS module -->
+    <script src="/js/libs/fileupload/jquery.fileupload-angular.js"></script>
+    {% endif %}
+
+    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="/js/libs/gallery/angular-touch.min.js"></script>
+    <script src="/js/libs/gallery/angular-carousel.min.js"></script>-->
+    {% if is_pg_edit %}
+        <script>
+            var key = "{{pg_id}}";
+            url = '/upload-edit/' + key;
+            console.log("is pg edit");
+        </script>
+    {% else %}
+        <script>
+            url = '/upload';
+            console.log("not pg edit");
+        </script>
+    {% endif %}
+    <script src="/js/app/app.js"></script>
+    <script src="/js/app/pg.js"></script>
+
+    {% endif %}
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  </body>
+</html>
+

@@ -1,0 +1,120 @@
+{% import "macros.html" as macros %}
+<!DOCTYPE html>
+<html lang="en" ng-app="pgApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>
+      {% block page_title %}
+        {% include "page_titles.html" %}
+      {% endblock %}
+    </title>
+    {% block canonicals %}
+      {% include "canonicals.html" %}
+    {% endblock %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="/css/fileupload/jquery.fileupload.css">
+    
+    <!-- Custom CSS -->
+    <link href="/css/shop-homepage1.css" rel="stylesheet">
+    <link href="/css/sign_in.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <title>How to keep footers at the bottom of the page (CSS demo)</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="How to keep footers at the bottom of the page (CSS demo)" />
+    <meta name="keywords" content="How to keep footers at the bottom of the page (CSS demo)" />
+    <meta name="robots" content="index, follow" />
+    <style media="screen" type="text/css">
+    html,
+    body {
+        margin:0;
+        padding:0;
+        height:100%;
+    }
+    #container {
+        min-height:100%;
+        position:relative;
+        width:100%;
+    }
+    #header {
+        background:#ff0;
+        padding:10px;
+    }
+    #body {
+        padding:10px;
+        padding-bottom:60px;    /* Height of the footer */
+    }
+    #footer {
+        position:absolute;
+        bottom:0;
+        height:60px;            /* Height of the footer */
+        background:#6cf;
+    }
+    /* other non-essential CSS */
+    #header p,
+    #header h1 {
+        margin:0;
+        padding:10px 0 0 10px;
+    }
+    #footer p {
+        margin:0;
+        padding:10px;
+    }
+    </style>
+    <!--[if lt IE 7]>
+    <style media="screen" type="text/css">
+    #container {
+        height:100%;
+    }
+    </style>
+    <![endif]-->
+</head>
+<body>
+
+<div id="container">
+    {% include "top_navigation_menu.html" %}
+    
+    <div id="body">
+        <!-- begin:header -->
+    
+    {% block breadcrumbs %}
+    <!-- Page Header -->
+    
+        <ol class="breadcrumb">
+          <li><a href="{{uri_for("home")}}">Home</a></li>
+          {% include "breadcrumbs.html" %}
+        </ol>
+
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    </div>
+    <div id="footer">
+        <!-- Footer start -->
+        <p><strong>Footer</strong> (always at the bottom). View more <a href="http://matthewjamestaylor.com/blog/-website-layouts">website layouts</a> and <a href="http://matthewjamestaylor.com/blog/-web-design">web design articles</a>.</p>
+        <!-- Footer end -->
+    </div>
+</div>
+
+
+
+</body>
+</html>

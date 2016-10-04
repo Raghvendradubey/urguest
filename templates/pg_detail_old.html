@@ -1,0 +1,185 @@
+{% extends 'base.html' %} 
+    
+{% block content %}
+    <div class="container">
+        {% if is_pg_detail and is_allowed_to_edit %}
+        <a href="{{ uri_for('pg_edit', pg_id=pg.key.id()) }}" class="btn btn-primary pull-right btn-edit">
+          <i class="icon-white icon-ok"></i> Edit Pg
+        </a> 
+        {% endif %}
+        {% if is_pg_edit and is_allowed_to_edit %}
+        
+                <a href="{{ uri_for('pg_detail', pg_id=pg.key.id()) }}" class="btn btn-success pull-right btn-edit">
+                    <i class="icon-white icon-ok"></i> Back to Pg
+                </a>
+            
+                <a href="{{ uri_for('pg_delete', pg_id=pg.key.id()) }}" class="btn btn-danger pull-right btn-edit">
+                   Delete Pg
+                </a>
+               
+       
+        {% endif %}   
+        <div class="row">
+            <!-- begin:article -->
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12 single-post">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="detail">
+                                <div class="row" ng-controller="PgController" ng-init="pgSlugInit='{{pg.key.urlsafe()}}'">
+                                    <div class="col-md-12">
+                                        <div class="group-text" ng-model="pgTitle" class="allow-linebreaks" {% if is_pg_edit and is_allowed_to_edit %} contentEditable="true"{% endif%}>
+                                            <h2>{{pg.pg_title}}</h2>
+                                        </div>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <td width="25%">
+                                                    <strong>Price</strong>
+                                                </td>
+                                                <td width="25%"  ng-model="pgPrice" {% if is_pg_edit and is_allowed_to_edit %} contentEditable="true"{% endif%}>{{pg.pg_price}}</td>
+                                                <td width="25%">
+                                                    <strong>Address</strong>
+                                                </td>
+                                                <td width="25%">
+                                                    <span  ng-model='pgStreetAddress' {% if is_pg_edit and is_allowed_to_edit %} contentEditable="true"{% endif%}>
+                                                        {{pg.pg_street_address}}
+                                                    </span>, 
+                                                    <span ng-model='pgCity' {% if is_pg_edit and is_allowed_to_edit %} contentEditable="true"{% endif%}>{{pg.getCity().city_name}}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div ng-model='pgDetail' {% if is_pg_edit and is_allowed_to_edit %} contentEditable="true"{% endif%}>
+                                        <h4>{{pg.pg_detail}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>Photos</h3>  
+                                {% if is_pg_edit %}
+                                    {% include "add_file.html" %}
+                                {% else %}    
+                                <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered class="carousel1 image">
+                                    {% for img in pg.pg_images %}  
+                                        <li><img src="{{img}}"/></li>  
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                                {% if is_pg_detail %}
+                                {% if is_admin %}      
+                                {% if pg.pg_request or pg.pg_member %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>Reuest For Pg</h2>
+                                        <table class="table table-bordered" ng-controller="RequestUserCtrl" ng-init="pgIdInit='{{pg.key.id()}}'">
+                                        {% for request_user in pg.pg_member %}
+                                            <tr>
+                                                <td>
+                                                    <strong>{{request_user.get().user_email}}</strong>
+                                                </td>
+                            
+                                                <td>
+                                                    Add
+                                                    <input type="checkbox"
+                                                        ng-click="saveUser('{{request_user.urlsafe()}}');"
+                                                        checked="true"/>
+                                                </td>
+                                                <td>
+                                                    Remove
+                                                    <input type="checkbox"
+                                                        ng-click="removeUser('{{request_user.urlsafe()}}');" />
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        {% for request_user in pg.pg_request %}
+                                            <tr>
+                                                <td><strong>{{request_user.get().user_email}}</strong></td>
+                                                <td>
+                                                    Add
+                                                    <input id="is-add-checkbox" 
+                                                        type="checkbox"
+                                                        ng-click="saveUser('{{request_user.urlsafe()}}');" />
+                                                </td>
+                                                <td>
+                                                    Remove
+                                                    <input id="is-remove-checkbox"
+                                                        type="checkbox"
+                                                        ng-click="removeUser('{{request_user.urlsafe()}}');" />
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                  
+                                <!-- break -->
+                                {% if pg_user %}
+                                    {% if pg_user.key in pg.pg_member %}
+                                        <h3>Any Issue related to this PG Please Contact Owner</h3>
+                                        <div class="col-md-6 col-sm-6">
+                                            <form action="{{uri_for('pg_detail', pg_id=pg.key.id())}}" method="post">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                            {{ macros.field(form.user_email, placeholder="Enter Your Email", class="form-control") }}
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                                                </div>
+                                            </form>
+                                        </div>      
+                                    
+                                    {% elif pg_user.key in pg.pg_request %}
+                                        <h3>You have already requested for This PG</h3>
+                                    {% else %}
+                                        <h3>Contact the owner</h3>
+                                        <div class="col-md-6 col-sm-6">
+                                            <form action="{{uri_for('pg_detail', pg_id=pg.key.id())}}" method="post">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                            {{ macros.field(form.user_email, placeholder="Enter Your Email", class="form-control") }}
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    {% endif %}        
+                                {% else %}    
+                                    <h3>Contact the owner</h3>
+                                    <div class="col-md-6 col-sm-6">
+                                        <form action="{{uri_for('pg_detail', pg_id=pg.key.id())}}" method="post">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                        {{ macros.field(form.user_email, placeholder="Enter Your Email", class="form-control") }}
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                                {% endif %}            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end:article -->          
+            </div>
+        </div>
+        
+    </div>
+    <!-- end:content -->
+{% endblock %}

@@ -1,0 +1,86 @@
+    {% extends "base.html" %}
+
+    {% block content %}
+    <!-- Page Content -->
+<!-- Projects Row -->
+        <div class="row" >
+            {% for pg in pgs %}
+            <div class="col-md-6 portfolio-item">
+                <div  class="carousel slide">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      
+                      <a href="{{uri_for('pg_detail', pg_id=pg.key.id())}}"><img src="{{pg.pgImage()[0]}}=s450-c" alt=""/></a>
+                    </div>
+                  </div>
+                </div>
+                <h3>
+                    <a href="{{uri_for('pg_detail', pg_id=pg.key.id())}}">{{pg.pg_title}}</a>
+                </h3>
+                <p>{{pg.pg_detail}}</p>
+            </div>
+            {% endfor %}
+            <nav>
+                <ul class="pager">
+                    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
+                    <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- /.row -->
+        
+    {% endblock %}
+    {% block information %}
+     <hr>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>What We Do</h2>
+                <p>
+                    For Property Owners- We assist in maximizing rental income of Real Estate Property Owners
+                </p>
+                <p>
+                    For Users who want to take Shared Accommodation (We do not use the word PG as this word has been misused by a lot of people)-
+                    We assist in providing Quality lodging and food services on shared basis by collaborating with real estate property owner and other entities.
+                </p>
+                <p>
+                    For Brokers- Brokers or Care Takers can also list property of the Lanlords on the portal. 
+                    We can also assist physically in maximizing rental income of your real estate assets
+                </p>        
+            </div>
+            <div class="col-sm-4">
+                <h2>Contact Us</h2>
+                <address>
+                    <br>Sun Tower, Shipra Sun City,
+                    <br>Indirapuram, Ghaziabad, U.P.
+                    <br>
+                </address>
+                <address>
+                    <abbr title="Phone">P:</abbr>9811072781
+                    <br>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">mukesh@urguest.com</a>
+                </address>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!--<div class="row">
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #1</h2>
+                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #2</h2>
+                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
+                <h2>Marketing Box #3</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+            </div>
+        </div>-->
+        <!-- /.row -->
+        
+        {% endblock %}

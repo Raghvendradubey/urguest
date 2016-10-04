@@ -1,0 +1,87 @@
+{% if is_home %}
+    <li class="active">Explore All Accomodation</li>
+  
+{% elif is_pg_detail %}
+  <li class="active">{{pg.pg_title}}</li>
+  
+{% elif is_pg_edit %}
+  <li class="active">{{pg.pg_title}}</li>
+  
+{% elif is_about_us %}
+  <li class="active">About Us</li>  
+  
+{% elif is_contact_us %}
+  <li class="active">Contact Us</li>  
+  
+{% elif is_faq %}
+  <li class="active">Frequently Asked Question</li>    
+  
+{% elif is_pg_post %}
+  <li class="active">Submit Accomodation</li> 
+  
+{% elif sign_up %}
+  <li class="active">Register UrSelf</li> 
+  
+{% elif login %}
+  <li class="active">Login</li>     
+  
+{% elif is_pg_search %}
+  <li class="active">search results</li> 
+  
+{% elif is_profile %}
+  <li>
+      <a href="{{ uri_for('profile', user_id=user.user_id, _full=True) }}">
+      {% if user.user_name %}
+          {{user.user_name}}
+      {% else %}
+          {{user.user_id}}
+      {% endif %}
+      </a>
+  </li>
+  <li class="active">PG</li> 
+
+{% elif is_profile_question %}
+  <li>
+      <a href="{{ uri_for('profile', user_id=user.user_id, _full=True) }}">
+      {% if user.user_name %}
+          {{user.user_name}}
+      {% else %}
+          {{user.user_id}}
+      {% endif %}
+      </a>
+  </li>
+  <li class="active">Your Questions</li> 
+  
+{% elif is_profile_notification %}
+  <li>
+      <a href="{{ uri_for('profile', user_id=user.user_id, _full=True) }}">
+      {% if user.user_name %}
+          {{user.user_name}}
+      {% else %}
+          {{user.user_id}}
+      {% endif %}
+      </a>
+  </li>
+  <li class="active">Notifications For You</li> 
+  
+{% elif is_setting %}
+  <li>
+      <a href="{{ uri_for('profile', user_id=user.user_id, _full=True) }}">
+      {% if user.user_name %}
+          {{user.user_name}}
+      {% else %}
+          {{user.user_id}}
+      {% endif %}
+      </a>
+  </li>
+  <li class="active">Change Password</li>   
+  
+{% elif is_profile_comments %}
+  <li><a href="{{ uri_for('profile', user_id=user.user_id, _full=True) }}">{{user.user_name}}</a></li>
+  <li class="active">Comments</li>    
+  
+{% elif is_category_submit %}
+  <li class="active">Enter new category</li>   
+  
+{% endif %}  
+  

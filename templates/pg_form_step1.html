@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+  <div class= "col-md-8">
+      <form class="myfirstform" role="form" action="{{uri_for('pg_post')}}" method="post">
+		<div class="form-group">
+			<div class="controls">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.title, placeholder="Think of a catchy title", class="form-control") }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.price, placeholder="Price", class="form-control") }}
+				</div>
+			</div>	
+		</div>
+		
+		<div class="form-group ">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.location, class="form-control") }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group ">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.sharing_three, class="form-control") }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group ">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.sharing_two, class="form-control") }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group ">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					{{ macros.field(form.pg_type, class="form-control") }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group ">  
+		  <div class="controls">
+		    <div class="input-group">
+		      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			  {{ macros.field(form.street_address, placeholder="Enter Street Address", class="form-control") }}	
+			</div>
+		  </div>
+		</div>
+		
+		<div class="form-group ">
+	        
+			<div class="controls">
+			    <div class="input-group">
+				    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ macros.field(form.description, placeholder="Enter Description", class="form-control", rows="4", cols="78") }}
+				</div>
+			</div>
+		</div>
+		
+		{% include "add_file.html" %}
+		
+	      <div class="controls" style="margin-left: 40%;">
+	      
+	      
+		  
+	       <button type="submit" id="mybtn"  class="btn btn-primary" >Submit</button>
+	        
+	      </div>
+		</form>
+		</div>
+		</div>
+{% endblock %}

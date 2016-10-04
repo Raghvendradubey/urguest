@@ -1,0 +1,10 @@
+{% import "macros.html" as macros %}
+<form action="{{ uri_for('ad_detail', category=ad.category.get().category_name, ad_id=ad.key.id(), _full=True) }}" method="post" class="form-horizontal">
+  {{ macros.field(form.comment, placeholder=("e.g.")+" johndoe", class="form-control") }}
+  <br>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Answer</button>
+    </div>
+  </div>    
+</form>
