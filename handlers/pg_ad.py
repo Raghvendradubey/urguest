@@ -498,7 +498,7 @@ class PgPost(BaseHandler):
       taskqueue.add(url='/taskqueue/index-single-pg',
                     queue_name='indexing',
                     params=dict(pg_id=pg.key.urlsafe()))
-      self.local_redirect_to('pg_detail', pg_id=pg.key.id())
+      self.local_redirect_to('pg_detail', pg_id=pg.key.urlsafe())
     else:
       self.local_redirect_to('sign_up')
       

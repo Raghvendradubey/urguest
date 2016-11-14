@@ -2,6 +2,7 @@
 "Imports are going here"
 import hashlib
 # pylint: disable-msg=F0401
+import logging
 import webapp2
 # pylint: enable-msg=F0401
 from google.appengine.api import taskqueue
@@ -42,6 +43,7 @@ class SignUpHandler(BaseHandler):
   def post(self):
     """ Method to submit sign up form """
     USER_EMAIL_LIST = user_model.GetActiveUsersEmails()
+    logging.info("SignUpHandler.post User Email List %s", USER_EMAIL_LIST)
     if self.form.user_email.data in USER_EMAIL_LIST:
         params = {
             'page_title' : 'SignUp',
@@ -51,15 +53,19 @@ class SignUpHandler(BaseHandler):
         self.render('sign_up.html', **params)
     else:    
       if not self.form.validate():
+        logging.info("SignUp data not valid")
         return self.get()
 
       # not a Oauth login
       auth_id = None
       name = None
       email = self.form.user_email.data
+      logging.info("User email is %s", email)
       user = sign_up(self, auth_id, name, email)
+      logging.info("User instace is %s", user)
       if self.session.get('pg_id') is not None:
         pg_id = self.session.get('pg_id')
+        logging.info("getting pg id from session %s", pg_id)
         pg = ndb.Key('Pg', pg_id)
         pg = pg.get()
         pg.user = user.key
@@ -68,7 +74,8 @@ class SignUpHandler(BaseHandler):
         taskqueue.add(url='/taskqueue/index-single-pg',
                     queue_name='indexing',
                     params=dict(pg_id=pg.key.urlsafe()))
-        self.local_redirect_to('pg_detail', pg_id=pg.key.id())
+        logging.info("redirecting to pg detail")
+        self.local_redirect_to('pg_detail', pg_id=pg.key.urlsafe())
       else:  
         self.local_redirect_to('profile', user_id=user.user_id)
       # pylint: enable-msg=W0142
@@ -128,7 +135,7 @@ class LoginHandler(BaseHandler):
           taskqueue.add(url='/taskqueue/index-single-pg',
                        queue_name='indexing',
                        params=dict(pg_id=pg.key.urlsafe()))
-          self.local_redirect_to('pg_detail', pg_id=pg.key.id())  
+          self.local_redirect_to('pg_detail', pg_id=pg.key.urlsafe())
         else:  
           self.local_redirect_to('profile', user_id=user.user_id)
       else:

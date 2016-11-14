@@ -18,7 +18,6 @@ from handlers import property_owner
 from handlers import pg_location
 from handlers import search
 from handlers import sign_up
-from handlers import test
 
 # pylint: disable-msg=C0103
 secure_scheme = 'https'
@@ -27,11 +26,6 @@ secure_scheme = 'https'
 # pylint: disable-msg=W0311
 # ROUTES Dictionary
 ROUTES = {
-
-    'test': dict(
-        handler=test.TestHandler,
-        url='/test'
-    ),
 
     'home': dict(
         handler=home.HomeHandler,

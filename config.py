@@ -18,7 +18,8 @@ SESSION_KEY = "a very long and secret session key goes here"
 USER_APP_MAIL_ID = "@tagfry3.appspotmail.com"
 
 #PG_SUPPORT_MAIL = 'mukesh.jaiswal@urguest.com'
-PG_SUPPORT_MAIL = 'mukesh.jaiswal@tagfry.com'
+#PG_SUPPORT_MAIL = 'mukesh.jaiswal@tagfry.com'
+PG_SUPPORT_MAIL = 'ravidubey009@gmail.com'
 
 #APP_MAIL = "support@sharedhos.appspotmail.com"
 APP_MAIL = "support@tagfry3.appspotmail.com"
@@ -92,7 +93,8 @@ THUMBNAIL_MODIFICATOR = '=s80'
 # seconds
 EXPIRATION_TIME = 300
 
-SENDER = "Ask Support <admin@sharedhos.appspotmail.com>"
+#SENDER = "Ask Support <admin@sharedhos.appspotmail.com>"
+SENDER = "Ask Support <admin@tagfry3.appspotmail.com>"
 
 PG_REQUEST_SUBJECT = "Pg Allotment Request"
 
